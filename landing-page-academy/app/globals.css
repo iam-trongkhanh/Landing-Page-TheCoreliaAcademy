@@ -50,7 +50,7 @@ body {
 
 .logo-marquee {
   width: max-content;
-  animation: logo-marquee-scroll 30s linear infinite;
+  animation: logo-marquee-scroll 150s linear infinite;
 }
 
 @keyframes video-title-scroll {
@@ -65,4 +65,18 @@ body {
 .video-title-marquee {
   width: max-content;
   animation: video-title-scroll 25s linear infinite;
+}
+
+@keyframes academic-marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.academic-marquee {
+  width: max-content;
+  animation: academic-marquee-scroll 30s linear infinite;
 }

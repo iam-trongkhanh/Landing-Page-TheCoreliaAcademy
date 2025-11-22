@@ -1,165 +1,245 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
-import { BrandMarquee } from "@/components/BrandMarquee";
 import { DepartmentsSection } from "@/components/DepartmentsSection";
-import { SectionHeading } from "@/components/SectionHeading";
+import { BrandMarquee } from "@/components/BrandMarquee";
+import { ContentMarquee } from "@/components/ContentMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { departments, partnerLogos } from "@/lib/siteData";
 
 const stats = [
   { label: "Student Nationalities", value: "100+" },
-  { label: "International Students", value: "25%" },
-  { label: "Daily Admissions", value: "1k+" },
-  { label: "Support", value: "24/7" },
+  { label: "Graduation Rate", value: "25%" },
+  { label: "Entry Admission", value: "10k" },
+  { label: "Open Classes", value: "24/7" },
 ];
 
-const historyEntries = [
+// const partnerLogos = [
+//   { name: "Logoipsum 1", src: "/brands/logo1.svg", width: 120, height: 40 },
+//   { name: "Logoipsum 2", src: "/brands/logo2.png", width: 120, height: 40 },
+//   { name: "Logoipsum 3", src: "/brands/logo3.svg", width: 120, height: 40 },
+//   { name: "Logoipsum 4", src: "/brands/logo4.svg", width: 120, height: 40 },
+//   { name: "Logoipsum 5", src: "/brands/logo5.svg", width: 120, height: 40 },
+//   { name: "Logoipsum 6", src: "/brands/logo6.svg", width: 120, height: 40 },
+// ];
+
+const highlights = [
   {
+    image_url: "/gallery/gallery-1.jpg",
     year: "2015",
-    title: "Get awards reward",
     description:
-      "While the adoption of cryptocurrency for everyday transactions is growing.",
-    image: "/gallery/gallery-1.jpg",
+      "Set academic records. While the adoption of cryptocurrency for everyday transactions is growing.",
   },
   {
+    image_url: "/gallery/gallery-2.jpg",
     year: "2020",
-    title: "Nominate by Google",
     description:
-      "While the use of cryptocurrency for everyday transactions is on the rise.",
-    image: "/gallery/gallery-2.jpg",
+      "Innovative city campus. While the use of cryptocurrency for everyday transactions is on the rise.",
   },
   {
-    year: "2024",
-    title: "Get awards reward",
+    image_url: "/gallery/gallery-3.jpg",
+    year: "2019",
     description:
-      "As cryptocurrency becomes increasingly adopted for everyday transactions.",
-    image: "/gallery/gallery-3.jpg",
+      "Innovative city campus. As the adoption of cryptocurrency for daily transactions continues to accelerate.",
+  },
+  {
+    image_url: "/gallery/gallery-4.jpg",
+    year: "2024",
+    description:
+      "Set records. As cryptocurrency becomes increasingly adopted for everyday transactions.",
+  },
+  {
+    image_url: "/gallery/gallery-5.jpg",
+    year: "2016",
+    description:
+      "Expanded global partnerships. The university established connections with leading institutions worldwide.",
+  },
+  {
+    image_url: "/gallery/gallery-6.jpg",
+    year: "2017",
+    description:
+      "Launched new research centers. Focus on innovation and cutting-edge technology development.",
+  },
+  {
+    image_url: "/gallery/gallery-7.jpg",
+    year: "2018",
+    description:
+      "Record enrollment numbers. Welcomed the largest incoming class in university history.",
+  },
+  {
+    image_url: "/gallery/gallery-8.jpg",
+    year: "2021",
+    description:
+      "Digital transformation initiative. Implemented comprehensive online learning platforms.",
+  },
+  {
+    image_url: "/gallery/gallery-9.jpg",
+    year: "2022",
+    description:
+      "Sustainability achievements. Recognized for environmental leadership and green campus initiatives.",
+  },
+  {
+    image_url: "/gallery/gallery-10.jpg",
+    year: "2023",
+    description:
+      "Research excellence award. Faculty recognized for groundbreaking contributions to science.",
   },
 ];
+
+// const expertiseFields = [
+//   {
+//     id: "01",
+//     name: "Psychology",
+//     description:
+//       "We Have Focused On Generating New Knowledge & Promoting In Any Kind Of Situations.",
+//   },
+//   {
+//     id: "02",
+//     name: "Sociology",
+//     description:
+//       "We Have Concentrated On Generating New Knowledge Across Diverse Social Situations.",
+//   },
+//   {
+//     id: "03",
+//     name: "Political Science",
+//     description:
+//       "We Have Focused On Generating New Knowledge Understanding In A Variety Of Political Situations.",
+//   },
+//   {
+//     id: "04",
+//     name: "Anthropology",
+//     description:
+//       "We Have Concentrated On Generating Understanding In A Whole Range Of Social Contexts.",
+//   },
+//   {
+//     id: "05",
+//     name: "Economics",
+//     description:
+//       "We Have Focused On Improving Understanding Across Diverse Economic Contexts And Issues.",
+//   },
+// ];
 
 export default function AboutPage() {
+  const [currentIndex, setCurrentIndex] = useState(highlights.length);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const itemWidth = 340;
+  const gap = 120;
+  const itemWidthWithGap = itemWidth + gap;
+  const itemsPerView = 4;
+
+  // Duplicate items for infinite loop
+  const duplicatedHighlights = [...highlights, ...highlights, ...highlights];
+
+  useEffect(() => {
+    if (currentIndex < highlights.length) {
+      // Reset to end without animation
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(highlights.length * 2);
+        setTimeout(() => setIsTransitioning(true), 10);
+      }, 500);
+      return () => clearTimeout(timer);
+    } else if (currentIndex >= highlights.length * 2) {
+      // Reset to start without animation
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(highlights.length);
+        setTimeout(() => setIsTransitioning(true), 10);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex]);
+
+  const handlePrevious = () => {
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev - 1);
+  };
+
+  const handleNext = () => {
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + 1);
+  };
+
   return (
-    <div className="min-h-screen bg-white text-[#1B1B1B]">
+    <div
+      className=" bg-white text-[#1B1B1B]"
+      style={{ fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}
+    >
       <SiteHeader />
 
       <main className="flex flex-col gap-24 bg-white pb-28 pt-0 text-[#1B1B1B]">
-        <section className="bg-[#F7E8EE]">
-          <div className="mx-auto flex w-full max-w-[1300px] flex-col gap-16 px-6 py-28 lg:flex-row lg:items-center lg:gap-24">
+        {/* Hero Section */}
+        <section className="bg-white pt-24 pb-5">
+          <div className="mx-auto flex w-full max-w-[1300px] flex-col items-center justify-center px-6">
             <AnimateOnScroll>
-              <div className="flex-1 space-y-8">
-                <p className="text-sm font-semibold uppercase tracking-[0.5em] text-[#A5495C]">
-                  Shape
-                </p>
-                <h1 className="text-[62px] font-semibold leading-tight text-[#1B1B1B]">
-                  Unleashing academic excellence
-                </h1>
-                <p className="text-lg leading-relaxed text-[#4D4D4D]">
-                  We have focused on generating new knowledge and promoting
-                  critical thinking amongst our students, graduating more than
-                  7,000 young men and women during this time.
-                </p>
-                <div className="flex flex-wrap items-center gap-8">
-                  <button className="inline-flex items-center justify-center border border-[#1B1B1B] px-12 py-4 text-sm font-semibold uppercase tracking-[0.4em] text-[#1B1B1B]">
-                    Apply now ↗
-                  </button>
-                  <div className="text-sm font-semibold uppercase tracking-[0.5em] text-[#7A1D32]">
-                    Since 1990
-                  </div>
-                </div>
-              </div>
-            </AnimateOnScroll>
-            <AnimateOnScroll>
-              <div className="flex flex-1 justify-center">
-                <div className="grid grid-cols-2 gap-8">
-                  {[
-                    "/images/founder-main.jpg",
-                    "/images/hero-student.jpg",
-                    "/images/founder-mentor.jpg",
-                    "/images/hero-student.jpg",
-                  ].map((src, index) => (
-                    <div
-                      key={`${src}-${index}`}
-                      className="relative h-56 w-56 bg-[#E8C7D1]"
-                    >
-                      <Image
-                        src={src}
-                        alt="About collage"
-                        fill
-                        className="object-cover object-center"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <h1
+                className="text-center text-[64px] font-semibold leading-tight text-[#111111]"
+                style={{ fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}
+              >
+                Unleashing academic
+                <br />
+                excellence
+              </h1>
             </AnimateOnScroll>
           </div>
         </section>
 
-        <section className="bg-white py-24">
+        {/* Quality Education Section */}
+        <section className="bg-white py-4">
           <div className="mx-auto flex w-full max-w-[1300px] flex-col gap-16 px-6">
-            <AnimateOnScroll>
-              <div className="text-center">
-                <h2 className="text-5xl font-semibold text-[#1B1B1B]">
-                  Unleashing academic excellence
-                </h2>
-              </div>
-            </AnimateOnScroll>
-            <div className="grid gap-16 lg:grid-cols-[1fr_1.15fr]">
+            <div className="grid gap-[140px] lg:grid-cols-[1fr_1.15fr]">
               <AnimateOnScroll>
                 <div className="space-y-8">
-                  <p className="text-sm font-semibold uppercase tracking-[0.5em] text-[#B0384F]">
-                    Since 1990
-                  </p>
-                  <h3 className="text-4xl font-semibold leading-tight">
+                  <span className=" underline underline-offset-[4px] decoration-2 font-semibold text-[14px] text-[rgb(100,19,32)]">
+                    SINCE 1990
+                  </span>
+
+                  <h3 className=" mt-[20px] text-[48px] font-semibold leading-tight">
                     Quality education for every students.
                   </h3>
-                  <p className="text-base leading-relaxed text-[#4D4D4D]">
+                  <p className="text-[16px] leading-relaxed text-[#4D4D4D]">
                     We have focused on generating new knowledge and promoting
                     critical thinking amongst our students, graduating more than
                     7,000 young men and women during this time.
                   </p>
-                  <div className="grid gap-6">
-                    <div className="relative h-64 w-full bg-[#E5D2D7]">
-                      <Image
-                        src="/gallery/gallery-7.jpg"
-                        alt="Campus tour"
-                        fill
-                        className="object-cover object-center"
-                      />
-                      <button className="absolute left-6 top-6 flex h-14 w-14 items-center justify-center border border-white bg-white text-[#7A1D32]">
-                        ▶
-                      </button>
-                    </div>
-                    <div className="relative h-64 w-full bg-[#E5D2D7]">
-                      <Image
-                        src="/gallery/gallery-8.jpg"
-                        alt="Students collaborating"
-                        fill
-                        className="object-cover object-center"
-                      />
-                    </div>
+                  <div className="relative w-[580px] h-[480px] bg-[#E5D2D7]">
+                    <iframe
+                      className="absolute inset-0 h-full w-full"
+                      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                      title="VIT University - 1Min Ad Film"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
                   </div>
                 </div>
               </AnimateOnScroll>
               <AnimateOnScroll>
                 <div className="flex flex-col gap-12">
-                  <div className="relative h-[420px] w-full bg-[#E5D2D7]">
+                  <div className="relative h-[535px] w-[580px] bg-[#E5D2D7]">
                     <Image
                       src="/gallery/gallery-9.jpg"
-                      alt="Study session"
+                      alt="Students collaborating in modern lounge"
                       fill
                       className="object-cover object-center"
                     />
                   </div>
-                  <div className="grid gap-10 md:grid-cols-2">
+                  <div className="grid gap-5 md:grid-cols-2">
                     {stats.map((stat) => (
                       <div key={stat.label} className="space-y-2">
-                        <p className="text-sm uppercase tracking-[0.4em] text-[#7A1D32]">
+                        <p className="text-[14px]   text-[#7A1D32]">
                           {stat.label}
                         </p>
-                        <p className="text-4xl font-semibold text-[#1B1B1B]">
+                        <p
+                          className="text-[48px] font-semibold"
+                          style={{
+                            color: "transparent",
+                            WebkitTextStroke: "2px #1B1B1B",
+                          }}
+                        >
                           {stat.value}
                         </p>
                       </div>
@@ -171,68 +251,155 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Partner Logos Section */}
         <section className="bg-white pb-20">
-          <div className="mx-auto w-full max-w-[1300px] px-6">
-            <SectionHeading
-              eyebrow="Brand Logo"
-              title="Partnering ecosystems"
-              align="left"
-            />
-          </div>
           <BrandMarquee
             logos={partnerLogos}
-            borderColorClass="border-[#E6D1D7]"
             itemClassName="flex h-12 w-28 items-center justify-center opacity-70"
             imageClassName="h-full w-full object-contain"
           />
         </section>
 
+        {/* University Highlights Section */}
         <section className="bg-[#FDF8FA] py-24">
-          <div className="mx-auto flex w-full max-w-[1300px] flex-col gap-12 px-6">
+          <div className="mx-auto flex w-full flex-col gap-12 px-6">
             <AnimateOnScroll>
-              <div className="max-w-3xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.5em] text-[#B0384F]">
-                  Our history
+              <div className="text-center">
+                <p className="text-[14px] font-semibold underline underline-offset-[4px] decoration-1 uppercase  text-[#B0384F]">
+                  OUR HISTORY
                 </p>
-                <h2 className="mt-4 text-4xl font-semibold leading-tight">
-                  One of the largest, most diverse universities in the NYC.
+                <h2 className="mt-4 text-[48px] font-semibold leading-tight">
+                  One of the largest,
+                  <span className="text-[#641320]"> most </span>
+                  diverse
+                  <br />
+                  <span className="text-[#641320]">universities </span>
+                  in the nyc.
                 </h2>
               </div>
             </AnimateOnScroll>
-            <div className="grid gap-8 lg:grid-cols-3">
-              {historyEntries.map((entry) => (
-                <AnimateOnScroll key={entry.year}>
-                  <div className="flex flex-col border border-[#E6D1D7]">
-                    <div className="relative h-56 w-full bg-[#E9D2D8]">
-                      <Image
-                        src={entry.image}
-                        alt={entry.title}
-                        fill
-                        className="object-cover object-center"
-                      />
+            <div className="relative w-full">
+              <div
+                className="overflow-hidden w-full mx-auto"
+                style={{
+                  maxWidth: `${
+                    itemsPerView * itemWidth + (itemsPerView - 1) * gap
+                  }px`,
+                }}
+              >
+                <div
+                  data-carousel
+                  className="flex"
+                  style={{
+                    gap: `${gap}px`,
+                    transform: `translateX(-${
+                      currentIndex * itemWidthWithGap
+                    }px)`,
+                    transition: isTransitioning
+                      ? "transform 500ms ease-in-out"
+                      : "none",
+                  }}
+                >
+                  {duplicatedHighlights.map((highlight, index) => (
+                    <div
+                      key={`${highlight.year}-${index}`}
+                      className="shrink-0 w-[340px] flex flex-col"
+                    >
+                      <div className="relative h-[220px] w-[340px] bg-[#E9D2D8]">
+                        <Image
+                          src={highlight.image_url}
+                          alt={highlight.description}
+                          fill
+                          className="object-cover object-center"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-3 px-8 py-10 w-[340px]">
+                        <p className="text-sm font-semibold uppercase text-[#B0384F]">
+                          {highlight.description.split(". ")[0]}
+                        </p>
+                        <p
+                          className="text-3xl font-semibold"
+                          style={{
+                            color: "transparent",
+                            WebkitTextStroke: "2px #1B1B1B",
+                          }}
+                        >
+                          {highlight.year}
+                        </p>
+                        <p className="text-sm leading-relaxed text-[#5C5C5C]">
+                          {highlight.description}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex flex-col gap-3 px-8 py-10">
-                      <p className="text-sm uppercase tracking-[0.5em] text-[#B0384F]">
-                        {entry.title}
-                      </p>
-                      <p className="text-3xl font-semibold text-[#1B1B1B]">
-                        {entry.year}
-                      </p>
-                      <p className="text-sm leading-relaxed text-[#5C5C5C]">
-                        {entry.description}
-                      </p>
-                    </div>
-                  </div>
-                </AnimateOnScroll>
-              ))}
+                  ))}
+                </div>
+              </div>
+              <div className="flex justify-center gap-4 mt-8">
+                <button
+                  onClick={handlePrevious}
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-[#641320] text-white transition-colors hover:bg-[#7A1D32]"
+                  aria-label="Previous"
+                >
+                  ←
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-[#641320] text-white transition-colors hover:bg-[#7A1D32]"
+                  aria-label="Next"
+                >
+                  →
+                </button>
+              </div>
             </div>
           </div>
         </section>
 
-        <DepartmentsSection
-          departments={departments}
-          className="bg-white py-24"
-        />
+        {/* Expertise Section */}
+        <DepartmentsSection departments={departments} />
+
+        {/* Decorative Bar Section */}
+        <section className="bg-white py-12">
+          <ContentMarquee
+            borderColorClass="border-[#641320] "
+            itemClassName="flex items-center gap-8"
+          >
+            <span className="text-4xl font-bold text-[#641320]">
+              mathematics
+            </span>
+            <svg
+              className="h-6 w-6 text-[#C27C8A]"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 4v8.82c0 4.54-3.07 8.83-7.09 9.95C8.07 21.83 5 17.54 5 13V8.18l7-3.5V2.18z" />
+            </svg>
+            <span
+              className="text-4xl font-bold"
+              style={{
+                color: "transparent",
+                WebkitTextStroke: "2px #C27C8A",
+              }}
+            >
+              arts
+            </span>
+            <svg
+              className="h-6 w-6 text-[#C27C8A]"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 4v8.82c0 4.54-3.07 8.83-7.09 9.95C8.07 21.83 5 17.54 5 13V8.18l7-3.5V2.18z" />
+            </svg>
+            <span
+              className="text-4xl font-bold"
+              style={{
+                color: "transparent",
+                WebkitTextStroke: "2px #C27C8A",
+              }}
+            >
+              commerce
+            </span>
+          </ContentMarquee>
+        </section>
       </main>
 
       <SiteFooter />
