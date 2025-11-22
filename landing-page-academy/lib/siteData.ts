@@ -2,7 +2,7 @@ export const navigation = ["Home", "Campus", "Programs", "Pages", "Events"];
 
 export const navRoutes: Record<string, string> = {
   Home: "/",
-  Campus: "/campus",
+  Campus: "/about",
   Programs: "/programs",
   Pages: "/pages",
   Events: "/events",

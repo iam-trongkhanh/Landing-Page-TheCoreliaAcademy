@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { AnimateFadeIn } from "@/components/AnimateFadeIn";
 
 export function VideoShowcase() {
   const [open, setOpen] = useState(false);
@@ -23,17 +24,21 @@ export function VideoShowcase() {
         priority
         className="object-cover object-center opacity-70"
       />
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-6 text-white">
-        <p className="text-sm font-semibold uppercase tracking-[0.5em] text-white/80">
-          Campus overview
-        </p>
-        <button
-          onClick={() => setOpen(true)}
-          className="flex h-20 w-20 items-center justify-center rounded-full bg-white text-black shadow-[0px_15px_40px_rgba(0,0,0,0.35)] transition-transform hover:scale-105"
-          aria-label="Play campus video"
-        >
-          ▶
-        </button>
+      <div className="relative z-10 flex h-full w-full items-center justify-center">
+        <AnimateFadeIn>
+          <div className="flex flex-col items-center justify-center gap-6 text-white">
+            <p className="text-sm font-semibold uppercase tracking-[0.5em] text-white/80">
+              Campus overview
+            </p>
+            <button
+              onClick={() => setOpen(true)}
+              className="flex h-20 w-20 items-center justify-center rounded-full bg-white text-black shadow-[0px_15px_40px_rgba(0,0,0,0.35)] transition-transform hover:scale-105"
+              aria-label="Play campus video"
+            >
+              ▶
+            </button>
+          </div>
+        </AnimateFadeIn>
       </div>
 
       {open && (
