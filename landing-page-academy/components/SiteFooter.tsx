@@ -2,21 +2,39 @@ import Image from "next/image";
 
 import { footerColumns } from "@/lib/siteData";
 
-export function SiteFooter() {
+interface SiteFooterProps {
+  variant?: "dark" | "light";
+}
+
+export function SiteFooter({ variant = "dark" }: SiteFooterProps) {
+  const isLight = variant === "light";
+
   return (
-    <footer className="relative -mt-32 bg-[#3C0B18] pt-40 pb-24 text-white">
-      <Image
-        src="/footer/bg.jpg"
-        alt="Students background"
-        fill
-        className="pointer-events-none object-cover object-center"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#3C0B18] via-[#3C0B18]/80 to-[#3C0B18]/60" />
+    <footer
+      className={`relative ${
+        isLight ? "bg-white pt-24 pb-24" : "-mt-32 bg-[#3C0B18] pt-40 pb-24"
+      } ${isLight ? "text-[#1B1B1B]" : "text-white"}`}
+    >
+      {!isLight && (
+        <>
+          <Image
+            src="/footer/bg.jpg"
+            alt="Students background"
+            fill
+            className="pointer-events-none object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#3C0B18] via-[#3C0B18]/80 to-[#3C0B18]/60" />
+        </>
+      )}
       <div className="relative mx-auto flex w-full max-w-[1300px] flex-col gap-12 px-6">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="flex flex-col gap-5">
             <span className="text-3xl font-semibold">Eduvet.</span>
-            <p className="text-base leading-relaxed text-white/80">
+            <p
+              className={`text-base leading-relaxed ${
+                isLight ? "text-[#4D4D4D]" : "text-white/80"
+              }`}
+            >
               The residential semester takes place at a specially designed
               campus in NYC, which provides a support system that aids students
               in becoming confident and self-reliant.
@@ -31,9 +49,17 @@ export function SiteFooter() {
                 </span>
               ))}
             </div> */}
-            <div className="flex gap-3 text-white/70">
+            <div
+              className={`flex gap-3 ${
+                isLight ? "text-[#4D4D4D]" : "text-white/70"
+              }`}
+            >
               {/* Facebook */}
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30">
+              <span
+                className={`flex h-10 w-10 items-center justify-center rounded-full border ${
+                  isLight ? "border-[#1B1B1B]/30" : "border-white/30"
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -45,7 +71,11 @@ export function SiteFooter() {
               </span>
 
               {/* X / Twitter */}
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30">
+              <span
+                className={`flex h-10 w-10 items-center justify-center rounded-full border ${
+                  isLight ? "border-[#1B1B1B]/30" : "border-white/30"
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -57,7 +87,11 @@ export function SiteFooter() {
               </span>
 
               {/* Instagram */}
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30">
+              <span
+                className={`flex h-10 w-10 items-center justify-center rounded-full border ${
+                  isLight ? "border-[#1B1B1B]/30" : "border-white/30"
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -69,7 +103,11 @@ export function SiteFooter() {
               </span>
 
               {/* YouTube */}
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30">
+              <span
+                className={`flex h-10 w-10 items-center justify-center rounded-full border ${
+                  isLight ? "border-[#1B1B1B]/30" : "border-white/30"
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -97,15 +135,23 @@ export function SiteFooter() {
           {footerColumns.map((column) => (
             <div
               key={column.heading}
-              className="flex flex-col gap-4 text-sm uppercase tracking-[0.25em] text-white/75"
+              className={`flex flex-col gap-4 text-[20px] ${
+                isLight ? "text-[#4D4D4D]" : "text-white/75"
+              }`}
             >
-              <span className="text-lg font-semibold tracking-[0.3em] text-white">
+              <span
+                className={`text-[20px] font-semibold uppercase ${
+                  isLight ? "text-[#1B1B1B]" : "text-white"
+                }`}
+              >
                 {column.heading}
               </span>
               {column.items.map((item) => (
                 <span
                   key={item}
-                  className="text-sm uppercase tracking-[0.15em] text-white/75"
+                  className={`text-[16px] ${
+                    isLight ? "text-[#4D4D4D]" : "text-white/75"
+                  }`}
                 >
                   {item}
                 </span>
@@ -113,27 +159,133 @@ export function SiteFooter() {
             </div>
           ))}
 
-          <div className="flex flex-col gap-5 text-sm uppercase tracking-[0.25em] text-white/75">
-            <span className="text-lg font-semibold tracking-[0.3em] text-white">
+          {/* <div className="flex flex-col gap-4 text-[14px] text-white/75">
+            <span className="text-[20px] uppercase font-semibold  text-white">
               Get in touch.
             </span>
             <div>
-              <p className="text-xs text-white/60">Phone Number</p>
-              <p className="text-lg font-semibold text-white">
+              <p className="text-[14px] text-white/60">Phone Number</p>
+              <p className="text-[16px] font-semibold text-white">
                 +1 (123) 456 789 00
               </p>
             </div>
+            <hr className=" border-white/30" />
+
             <div>
-              <p className="text-xs text-white/60">Email address</p>
-              <p className="text-lg font-semibold text-white">
+              <p className="text-[14px] text-white/60">Email address</p>
+              <p className="text-[16px] font-semibold text-white">
                 info@eduvet.com
               </p>
             </div>
+            <hr className=" border-white/30" />
+
             <div>
-              <p className="text-xs text-white/60">Address</p>
-              <p className="text-lg font-semibold text-white">
+              <p className="text-[14px] text-white/60">Address</p>
+              <p className="text-[16px] font-semibold text-white">
                 12/A, New Booston Tower, NYC
               </p>
+            </div>
+          </div> */}
+          <div
+            className={`flex flex-col gap-6 text-[14px] ${
+              isLight ? "text-[#4D4D4D]" : "text-white/75"
+            }`}
+          >
+            <span
+              className={`text-[20px] uppercase font-semibold ${
+                isLight ? "text-[#1B1B1B]" : "text-white"
+              }`}
+            >
+              Get in touch.
+            </span>
+
+            {/* PHONE */}
+            <div className="flex items-start gap-3">
+              <Image
+                src="/icons/phone.svg"
+                alt="Phone icon"
+                className={`${isLight ? "" : "invert brightness-0"} mt-[2px]`}
+                width={20}
+                height={20}
+              />
+              <div className="flex flex-col">
+                <p
+                  className={`text-[14px] ${
+                    isLight ? "text-[#4D4D4D]" : "text-white/60"
+                  }`}
+                >
+                  Phone Number
+                </p>
+                <p
+                  className={`text-[16px] font-semibold ${
+                    isLight ? "text-[#1B1B1B]" : "text-white"
+                  }`}
+                >
+                  +(123) 456 789 00
+                </p>
+              </div>
+            </div>
+
+            <hr
+              className={isLight ? "border-[#1B1B1B]/30" : "border-white/30"}
+            />
+
+            {/* EMAIL */}
+            <div className="flex items-start gap-3">
+              <Image
+                src="/icons/telegram.svg"
+                alt="Mail icon"
+                className={`${isLight ? "" : "brightness-0 invert"} mt-[2px]`}
+                width={20}
+                height={20}
+              />
+              <div className="flex flex-col">
+                <p
+                  className={`text-[14px] ${
+                    isLight ? "text-[#4D4D4D]" : "text-white/60"
+                  }`}
+                >
+                  Email Address
+                </p>
+                <p
+                  className={`text-[16px] font-semibold ${
+                    isLight ? "text-[#1B1B1B]" : "text-white"
+                  }`}
+                >
+                  info@eduvet.com
+                </p>
+              </div>
+            </div>
+
+            <hr
+              className={isLight ? "border-[#1B1B1B]/30" : "border-white/30"}
+            />
+
+            {/* ADDRESS */}
+            <div className="flex items-start gap-3">
+              <Image
+                src="/icons/location.svg"
+                alt="Location icon"
+                className={`${isLight ? "" : "brightness-0 invert"} mt-[2px]`}
+                width={20}
+                height={20}
+              />
+              <div className="flex flex-col">
+                <p
+                  className={`text-[14px] ${
+                    isLight ? "text-[#4D4D4D]" : "text-white/60"
+                  }`}
+                >
+                  Address
+                </p>
+                <p
+                  className={`text-[16px] font-semibold ${
+                    isLight ? "text-[#1B1B1B]" : "text-white"
+                  }`}
+                >
+                  New York, US, 12/A, New Boston Tower
+                </p>
+              </div>
             </div>
           </div>
 
@@ -161,8 +313,36 @@ export function SiteFooter() {
             </div>
           </div> */}
         </div>
-        <div className="border-t border-white/20 pt-6 text-center text-sm uppercase tracking-[0.4em] text-white/70">
-          Copyright & design by ©FramerDevs 2024, All rights reserved
+        <div
+          className={`border-t ${
+            isLight ? "border-[#1B1B1B]/20" : "border-white/20"
+          } pt-6 flex items-center justify-between`}
+        >
+          <div className="flex items-center gap-2">
+            <Image
+              src="/icons/hat.svg"
+              alt="Eduvet logo"
+              width={24}
+              height={24}
+              className={isLight ? "" : "brightness-0 invert"}
+            />
+            <span
+              className={`text-xl font-semibold ${
+                isLight ? "text-[#1B1B1B]" : "text-white"
+              }`}
+            >
+              Eduvet.
+            </span>
+          </div>
+          <div
+            className={`text-[14px] uppercase font-semibold ${
+              isLight ? "text-[#4D4D4D]" : "text-white/70"
+            }`}
+          >
+            Copyright & design by
+            <span className="text-black"> ©FramerDevs </span>
+            2024, All rights reserved
+          </div>
         </div>
       </div>
     </footer>

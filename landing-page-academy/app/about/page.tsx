@@ -18,15 +18,6 @@ const stats = [
   { label: "Open Classes", value: "24/7" },
 ];
 
-// const partnerLogos = [
-//   { name: "Logoipsum 1", src: "/brands/logo1.svg", width: 120, height: 40 },
-//   { name: "Logoipsum 2", src: "/brands/logo2.png", width: 120, height: 40 },
-//   { name: "Logoipsum 3", src: "/brands/logo3.svg", width: 120, height: 40 },
-//   { name: "Logoipsum 4", src: "/brands/logo4.svg", width: 120, height: 40 },
-//   { name: "Logoipsum 5", src: "/brands/logo5.svg", width: 120, height: 40 },
-//   { name: "Logoipsum 6", src: "/brands/logo6.svg", width: 120, height: 40 },
-// ];
-
 const highlights = [
   {
     image_url: "/gallery/gallery-1.jpg",
@@ -90,7 +81,6 @@ const highlights = [
   },
 ];
 
-// const expertiseFields = [
 //   {
 //     id: "01",
 //     name: "Psychology",
@@ -131,12 +121,10 @@ export default function AboutPage() {
   const itemWidthWithGap = itemWidth + gap;
   const itemsPerView = 4;
 
-  // Duplicate items for infinite loop
   const duplicatedHighlights = [...highlights, ...highlights, ...highlights];
 
   useEffect(() => {
     if (currentIndex < highlights.length) {
-      // Reset to end without animation
       const timer = setTimeout(() => {
         setIsTransitioning(false);
         setCurrentIndex(highlights.length * 2);
@@ -144,7 +132,6 @@ export default function AboutPage() {
       }, 500);
       return () => clearTimeout(timer);
     } else if (currentIndex >= highlights.length * 2) {
-      // Reset to start without animation
       const timer = setTimeout(() => {
         setIsTransitioning(false);
         setCurrentIndex(highlights.length);
@@ -172,7 +159,6 @@ export default function AboutPage() {
       <SiteHeader />
 
       <main className="flex flex-col gap-24 bg-white pb-28 pt-0 text-[#1B1B1B]">
-        {/* Hero Section */}
         <section className="bg-white pt-24 pb-5">
           <div className="mx-auto flex w-full max-w-[1300px] flex-col items-center justify-center px-6">
             <AnimateOnScroll>
@@ -188,7 +174,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Quality Education Section */}
         <section className="bg-white py-4">
           <div className="mx-auto flex w-full max-w-[1300px] flex-col gap-16 px-6">
             <div className="grid gap-[140px] lg:grid-cols-[1fr_1.15fr]">
@@ -251,7 +236,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Partner Logos Section */}
         <section className="bg-white pb-20">
           <BrandMarquee
             logos={partnerLogos}
@@ -354,10 +338,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Expertise Section */}
         <DepartmentsSection departments={departments} />
 
-        {/* Decorative Bar Section */}
         <section className="bg-white py-12">
           <ContentMarquee
             borderColorClass="border-[#641320] "
@@ -402,7 +384,7 @@ export default function AboutPage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <SiteFooter variant="light" />
     </div>
   );
 }

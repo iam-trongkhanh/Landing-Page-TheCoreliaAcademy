@@ -61,7 +61,16 @@ export const departments = [
 export const footerColumns = [
   {
     heading: "Essential.",
-    items: ["About Us", "Our team", "what we do", "contact us", "FAQ", "blogs"],
+    items: [
+      "About Us",
+      "Our Teachers",
+      "What We Do",
+      "Contact Us",
+      "FAQ",
+      "Blogs",
+      "Events",
+      "Subjects",
+    ],
   },
   {
     heading: "Programs.",

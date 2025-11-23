@@ -80,3 +80,12 @@ body {
   width: max-content;
   animation: academic-marquee-scroll 30s linear infinite;
 }
+
+.icon-filter {
+  filter: brightness(0) saturate(100%) invert(32%) sepia(5%) saturate(5000%)
+    hue-rotate(340deg) brightness(90%) contrast(90%);
+}
+
+.group:hover .icon-filter {
+  filter: brightness(0) invert(1);
+}
