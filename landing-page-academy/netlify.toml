@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  # Không cần set publish directory khi dùng @netlify/plugin-nextjs
+  # Plugin sẽ tự động xử lý build output
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
@@ -18,9 +19,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# Redirects cho Next.js (Netlify plugin sẽ tự động xử lý, nhưng giữ lại để đảm bảo)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# KHÔNG cần redirect rule cho Next.js
+# @netlify/plugin-nextjs sẽ tự động xử lý routing và static assets (CSS, JS, images)
+# Redirect rule "/*" -> "/index.html" chỉ dành cho static sites, sẽ phá vỡ CSS/JS của Next.js
 
