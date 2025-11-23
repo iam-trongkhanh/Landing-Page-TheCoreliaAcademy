@@ -1,0 +1,26 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# Headers cho security và performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Redirects cho Next.js (Netlify plugin sẽ tự động xử lý, nhưng giữ lại để đảm bảo)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+

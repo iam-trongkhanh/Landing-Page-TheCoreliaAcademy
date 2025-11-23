@@ -6,7 +6,7 @@ const siteConfig = {
     "Eduvet University - Top Educational Institution in NYC | Quality Education Since 1990",
   description:
     "Eduvet University is one of the most reputed educational institutions in NYC, offering quality education since 1990. Explore our programs in Social Science, Psychology, Sociology, and more. Join 7,000+ successful graduates.",
-  url: "https://www.eduvet.edu", // Update with your actual domain
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://your-site-name.netlify.app", // Update with your actual domain after deployment
   ogImage: "/images/hero-student.jpg",
   twitterHandle: "@eduvetuniversity", // Update with your actual Twitter handle
   keywords: [
