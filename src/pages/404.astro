@@ -1,0 +1,93 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SiteHeader } from "../components/SiteHeader";
+import { SiteFooter } from "../components/SiteFooter";
+import { Button } from "../components/ui/Button";
+---
+
+<Layout
+  title="404 Error - Eduvet University"
+  description="Page not found. The page you are looking for does not exist."
+  path="/404"
+>
+  <style>
+    .back-to-home-btn.group:hover span {
+      color: rgb(17, 24, 39) !important;
+    }
+    .back-to-home-btn.group:hover span[aria-hidden="true"] {
+      color: rgb(17, 24, 39) !important;
+    }
+  </style>
+  <div class="bg-white text-[#1F3050]">
+    <SiteHeader client:load></SiteHeader>
+
+    <main class="flex-grow">
+      <div class="relative bg-[#651224] text-white text-center overflow-hidden" style="height: 950px;">
+        <!-- Background overlay -->
+        <div class="absolute inset-0 bg-black opacity-30"></div>
+        
+        <!-- Background image with blend mode -->
+        <div 
+          class="absolute inset-0 bg-cover bg-center" 
+          style="background-image: url('/video/campus.jpg'); mix-blend-mode: luminosity; opacity: 0.15;"
+        ></div>
+        
+        <!-- Large 404 watermark with gradient fade -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="relative">
+            <!-- Outer stroke -->
+            <h1 
+              class="font-bold absolute inset-0" 
+              style="
+                font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+                font-size: 25vw; 
+                line-height: 1; 
+                color: transparent;
+                -webkit-text-stroke: 3px rgba(255, 255, 255, 0.1);
+                mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%); 
+                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+              "
+            >
+              404
+            </h1>
+            <!-- Inner stroke -->
+            <h1 
+              class="font-bold relative" 
+              style="
+                font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+                font-size: 25vw; 
+                line-height: 1; 
+                color: transparent;
+                -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.15);
+                mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%); 
+                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+              "
+            >
+              404
+            </h1>
+          </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col items-center justify-center">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 relative">
+            Ops! something went really <br class="hidden sm:block"/> really wrong.
+          </h2>
+          <Button
+            client:load
+            variant="outline"
+            size="md"
+            href="/"
+            showArrow
+            className="back-to-home-btn !bg-white !text-gray-900 !border-white hover:!bg-gray-100 hover:!border-gray-100 hover:!text-gray-900"
+          >
+            BACK TO HOME
+          </Button>
+        </div>
+      </div>
+    </main>
+
+    <SiteFooter variant="light"></SiteFooter>
+  </div>
+</Layout>
+
