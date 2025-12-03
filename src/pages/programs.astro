@@ -164,46 +164,42 @@ const courseSchema = {
       ></TestimonialsSection>
 
       <section class="bg-white pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-8 sm:pb-10 md:pb-12">
-        <div class="mx-auto flex w-full max-w-[1300px] flex-col gap-8 sm:gap-10 md:gap-12 px-4 sm:px-6 lg:flex-row lg:items-start lg:gap-12 xl:gap-16">
+        <div class="mx-auto flex w-full max-w-[1300px] flex-col gap-8 sm:gap-10 md:gap-12 px-4 sm:px-6 lg:flex-row-reverse lg:items-start lg:gap-12 xl:gap-16">
           <div class="flex w-full lg:w-1/2 shrink-0 flex-col gap-6 sm:gap-8">
             <AnimateOnScroll client:visible>
               <div class="flex flex-col pt-0 sm:pt-6 md:pt-[50px] gap-3 sm:gap-4">
-                <p class="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#1B1B1B] underline underline-offset-2 sm:underline-offset-4">
+                <p class="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] sm:tracking-[0.15em] text-[#1B1B1B] underline underline-offset-2 sm:underline-offset-4">
                   GET IN TOUCH
                 </p>
                 <h2 class="text-2xl sm:text-3xl md:text-4xl my-3 sm:my-4 md:my-[20px] font-semibold leading-tight text-[#1B1B1B] break-words">
-                  Tell us anything{" "}
-                  <span class="text-[#822333]">here.</span>
+                  Tell us anything
+                  <span class="text-[#822333]"> here</span>.
                 </h2>
               </div>
 
               <form class="mt-4 sm:mt-5 relative flex flex-col gap-4 sm:gap-6 md:gap-8 z-10">
                 <FormInput
-                  client:load
                   type="email"
                   placeholder="Business email"
                   icon={UserIcon({})}
                 />
 
                 <FormInput
-                  client:load
                   type="text"
                   placeholder="info@"
                   icon={EmailIcon({})}
                 />
 
                 <FormTextarea
-                  client:load
                   placeholder="Message"
                   rows={4}
                   icon={PenIcon({})}
                 />
 
                 <Button
-                  client:load
                   type="submit"
-                  variant="secondary"
-                  size="md"
+                  variant="primary"
+                  size="lg"
                   fullWidth
                   className="sm:w-auto"
                 >

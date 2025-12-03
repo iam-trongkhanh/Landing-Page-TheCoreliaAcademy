@@ -36,10 +36,10 @@ export function ProgramCard({
         {/* Button */}
         <a
           href={href}
-          className="mt-auto flex items-center gap-2 text-sm font-semibold text-[#641320] transition-colors duration-500 group-hover:text-white"
+          className="mt-auto inline-flex items-center gap-2 border border-transparent px-3 py-2 text-sm font-semibold text-[#641320] transition-all duration-300 group-hover:text-white hover:border-white hover:bg-transparent hover:text-white group/readmore"
         >
-          READ MORE
-          <span className="transition-transform duration-300 group-hover:translate-x-1">
+          <span>READ MORE</span>
+          <span className="transition-transform duration-300 group-hover/readmore:translate-x-1">
             →
           </span>
         </a>
@@ -47,4 +47,3 @@ export function ProgramCard({
     </div>
   );
 }
-

@@ -41,7 +41,7 @@ export function Button({
   fullWidth = false,
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center gap-2 sm:gap-3 font-semibold uppercase tracking-[0.3em] sm:tracking-[0.4em] transition-all duration-600";
+    "inline-flex items-center justify-center gap-2 sm:gap-3 font-semibold uppercase tracking-[0.3em] sm:tracking-[0.4em] transition-all duration-600 cursor-pointer";
   const widthStyle = fullWidth ? "w-full sm:w-auto" : "";
 
   // Combine all styles, className comes last to allow overrides

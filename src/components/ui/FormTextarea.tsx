@@ -16,15 +16,14 @@ export function FormTextarea({
       className={`flex flex-1 items-start gap-2 sm:gap-3 border border-[#D9D9D9] px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 min-h-[100px] sm:min-h-[120px] ${containerClassName}`}
     >
       {icon && (
-        <div className="h-5 w-5 sm:h-6 sm:w-6 text-[#B0384F] shrink-0 mt-1">
+        <div className="h-5 w-5 sm:h-6 sm:w-6 text-[#B0384F] shrink-0 mt-[2px]">
           {icon}
         </div>
       )}
       <textarea
-        className={`flex-1 resize-none bg-transparent text-xs sm:text-sm text-[#1B1B1B] outline-none placeholder:text-[#8C8C8C] ${className}`}
+        className={`flex-1 resize-none bg-transparent text-xs sm:text-sm text-[#1B1B1B] outline-none placeholder:text-[#8C8C8C] pt-1 ${className}`}
         {...props}
       />
     </div>
   );
 }
-
