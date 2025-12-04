@@ -4,6 +4,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --app-max-width: 1350px;
 }
 
 @theme inline {
@@ -136,4 +137,130 @@ section[class*="bg-[#FDF8FA]"] .relative::before {
 .carousel-container {
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;
+}
+
+.app-container {
+  width: 100%;
+  max-width: var(--app-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .app-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Header sticky khi viewport dưới 810px */
+@media (max-width: 809px) {
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: #ffffff;
+  }
+}
+
+/* Tinh chỉnh breakpoint cho section about:
+   - Giữ layout 2 cột từ 810px trở lên
+   - Dưới 810px thì stack như mobile */
+@media (min-width: 810px) and (max-width: 1023.98px) {
+  .about-hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    column-gap: 3.5rem; /* gần với md:gap-16 */
+  }
+}
+
+/* Khung media (video + hình) ở trang About
+   - Dưới 810px: width full, height ~630px tại 810px và co lại theo viewport
+   - Tính toán: container width = 100vw - 50px (padding 25px mỗi bên)
+     height = (container width) * (630 / 760) */
+/* Mặc định cho desktop & tablet: giữ tỷ lệ để luôn có chiều cao */
+.about-media {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 580 / 535;
+}
+
+.about-media > iframe,
+.about-media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 809px) {
+  .about-media {
+    height: calc((100vw - 50px) * 0.8289473684); /* 630 / 760 */
+    aspect-ratio: auto; /* ưu tiên chiều cao tính theo công thức */
+  }
+}
+
+/* Video thumbnail với nút play pulse */
+.video-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-image: url("https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.video-play-pulse {
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  animation: video-pulse 1.8s ease-out infinite;
+}
+
+.video-play-button {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.video-play-icon {
+  margin-left: 3px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 16px solid #000000;
+}
+
+/* (Tùy chọn) có thể thêm hiệu ứng hover khác sau nếu cần */
+
+@keyframes video-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
 }

@@ -22,7 +22,7 @@ export function DepartmentsSection({
 }: DepartmentsSectionProps) {
   return (
     <section
-      className={`mx-auto flex w-full max-w-[1300px] flex-col gap-8 sm:gap-12 md:gap-16 px-4 sm:px-6 ${className}`}
+      className={`app-container flex w-full flex-col gap-8 sm:gap-12 md:gap-16 ${className}`}
     >
       <AnimateOnScroll>
         <SectionHeading eyebrow={eyebrow} title={title} />
@@ -69,4 +69,3 @@ export function DepartmentsSection({
     </section>
   );
 }
-

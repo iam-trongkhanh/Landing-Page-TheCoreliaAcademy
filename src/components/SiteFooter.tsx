@@ -23,7 +23,7 @@ export function SiteFooter({ variant = "dark" }: SiteFooterProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-[#3C0B18] via-[#3C0B18]/80 to-[#3C0B18]/60" />
         </>
       )}
-      <div className="relative mx-auto flex w-full max-w-[1300px] flex-col gap-8 sm:gap-10 md:gap-12 px-4 sm:px-6">
+      <div className="relative app-container flex w-full flex-col gap-8 sm:gap-10 md:gap-12">
         <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="flex flex-col gap-4 sm:gap-5">
             <span className="text-2xl sm:text-3xl font-semibold">Eduvet.</span>
@@ -275,4 +275,3 @@ export function SiteFooter({ variant = "dark" }: SiteFooterProps) {
     </footer>
   );
 }
-

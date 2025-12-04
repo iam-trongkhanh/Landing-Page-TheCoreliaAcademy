@@ -26,13 +26,13 @@ export function TestimonialsSection({
 
   return (
     <section className="bg-[#822333] py-12 sm:py-16 md:py-20 lg:py-24 text-white">
-      <div className="mx-auto flex w-full max-w-[1300px] flex-col gap-8 sm:gap-12 md:gap-16 px-4 sm:px-6">
+      <div className="app-container flex w-full flex-col gap-8 sm:gap-12 md:gap-16">
         <AnimateOnScroll>
           <div className="text-center px-4">
             <p className="text-xs sm:text-sm md:text-[14px] font-semibold uppercase">
               WHAT OUR STUDENTS SAY?
             </p>
-            <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-semibold leading-tight text-white break-words">
+            <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-semibold leading-tight text-white wrap-break-word">
               Top reviews provided by
               <br className="hidden sm:block" />
               <span className="sm:hidden"> </span>our customers
@@ -62,4 +62,3 @@ export function TestimonialsSection({
     </section>
   );
 }
-

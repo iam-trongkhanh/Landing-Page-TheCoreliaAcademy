@@ -6,10 +6,10 @@ export function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="border-b border-[#E3D5DA] bg-white">
+    <header className="border-b border-[#E3D5DA] bg-white sticky-header">
       {/* Top bar – only show on desktop (>= 1280px) */}
       <div className="hidden xl:block bg-[#4A0F1F] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] sm:tracking-[0.15em] text-white">
-        <div className="mx-auto flex w-full max-w-[1300px] flex-col gap-2 sm:flex-row items-center justify-between px-4 sm:px-6 py-2 sm:py-3">
+        <div className="app-container flex w-full flex-col gap-2 sm:flex-row items-center justify-between py-2 sm:py-3">
           <span className="text-center sm:text-left">
             Welcome to our Eduvet University
           </span>
@@ -24,7 +24,7 @@ export function SiteHeader() {
       </div>
 
       {/* Main header */}
-      <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between px-4 sm:px-6 py-4 sm:py-6">
+      <div className="app-container flex w-full items-center justify-between py-4 sm:py-6">
         <div className="flex items-center gap-3">
           <h1 className="text-xl sm:text-2xl font-semibold text-[#4A0F1F]">
             <a href="/" aria-label="Eduvet University Home">
@@ -168,7 +168,7 @@ export function SiteHeader() {
       {/* Mobile Menu – shown on widths < 1280px */}
       {isMobileMenuOpen && (
         <div className="xl:hidden border-t border-[#E3D5DA] bg-white">
-          <nav className="mx-auto flex w-full max-w-[1300px] flex-col px-4 py-4">
+          <nav className="app-container flex w-full flex-col py-4">
             {navigation.map((item) => (
               <a
                 key={item}

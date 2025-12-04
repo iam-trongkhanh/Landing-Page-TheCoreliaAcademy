@@ -98,7 +98,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 
     <main class="flex flex-col gap-12 sm:gap-16 md:gap-20 lg:gap-24 bg-white pb-12 sm:pb-16 md:pb-20 lg:pb-28 pt-0 text-[#1B1B1B]">
       <section class="bg-white pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-4 sm:pb-5">
-        <div class="mx-auto flex w-full max-w-[1300px] flex-col items-center justify-center px-4 sm:px-6">
+        <div class="app-container flex w-full flex-col items-center justify-center">
           <AnimateOnScroll client:visible>
             <h1
               class="text-center text-3xl sm:text-4xl md:text-5xl lg:text-[56px] xl:text-[64px] font-semibold leading-tight text-[#111111] px-2 sm:px-4 break-words"
@@ -113,9 +113,9 @@ const breadcrumbSchema = generateBreadcrumbSchema([
       </section>
 
       <section class="bg-white py-4 sm:py-6 md:py-8">
-        <div class="mx-auto flex w-full max-w-[1300px] flex-col gap-8 sm:gap-12 md:gap-16 px-4 sm:px-6">
+        <div class="app-container flex w-full flex-col gap-8 sm:gap-12 md:gap-16">
           <AnimateOnScroll client:visible>
-            <div class="grid gap-8 sm:gap-12 md:gap-16 lg:gap-[140px] lg:grid-cols-[1fr_1.15fr]">
+            <div class="about-hero-grid grid gap-8 sm:gap-12 md:gap-16 lg:gap-[140px] lg:grid-cols-[1fr_1.15fr]">
               <div class="space-y-4 sm:space-y-6 md:space-y-8">
                 <span class="underline underline-offset-4 decoration-2 font-semibold text-xs sm:text-sm md:text-[14px] text-[rgb(100,19,32)]">
                   SINCE 1990
@@ -129,19 +129,23 @@ const breadcrumbSchema = generateBreadcrumbSchema([
                   critical thinking amongst our students, graduating more
                   than 7,000 young men and women during this time.
                 </p>
-                <div class="relative w-full max-w-full sm:max-w-[500px] md:max-w-[580px] aspect-video bg-[#E5D2D7]">
-                  <iframe
-                    class="absolute inset-0 h-full w-full"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                    title="VIT University - 1Min Ad Film"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
+                <div class="about-media relative w-full max-w-full sm:max-w-[500px] md:max-w-[580px] bg-[#E5D2D7] overflow-hidden">
+                  <button
+                    class="video-thumbnail"
+                    type="button"
+                    data-video-id="dQw4w9WgXcQ"
+                    aria-label="Play campus video"
+                  >
+                    <span class="video-play-pulse"></span>
+                    <span class="video-play-button">
+                      <span class="video-play-icon"></span>
+                    </span>
+                  </button>
                 </div>
               </div>
               <AnimateOnScroll client:visible>
                 <div class="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12">
-                  <div class="relative w-full aspect-[580/535] max-w-full sm:max-w-[500px] md:max-w-[580px] lg:max-w-none bg-[#E5D2D7]">
+                  <div class="about-media relative w-full max-w-full sm:max-w-[500px] md:max-w-[580px] lg:max-w-none bg-[#E5D2D7] overflow-hidden">
                     <img
                       src="/gallery/gallery-9.jpg"
                       alt="Students collaborating in modern lounge"
@@ -179,7 +183,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
       </section>
 
       <section class="bg-[#FDF8FA] py-12 sm:py-16 md:py-20 lg:py-24">
-        <div class="mx-auto flex w-full flex-col gap-8 sm:gap-10 md:gap-12 px-4 sm:px-6">
+        <div class="app-container flex w-full flex-col gap-8 sm:gap-10 md:gap-12">
           <AnimateOnScroll client:visible>
             <div class="text-center">
               <p class="text-xs sm:text-sm md:text-[14px] font-semibold underline underline-offset-4 decoration-1 uppercase text-[#B0384F]">
@@ -241,5 +245,37 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 
     <SiteFooter variant="light"></SiteFooter>
   </div>
+
+  <script>
+    if (typeof window !== "undefined") {
+      window.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".video-thumbnail").forEach((button) => {
+          const videoId = button.getAttribute("data-video-id");
+          if (!videoId) return;
+
+          const container = button.parentElement;
+          if (!container) return;
+
+          button.addEventListener("click", () => {
+            const iframe = document.createElement("iframe");
+            iframe.setAttribute(
+              "src",
+              `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`
+            );
+            iframe.setAttribute("title", "Campus video");
+            iframe.setAttribute(
+              "allow",
+              "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            );
+            iframe.setAttribute("allowFullscreen", "true");
+            iframe.className = "absolute inset-0 h-full w-full";
+
+            container.innerHTML = "";
+            container.appendChild(iframe);
+          });
+        });
+      });
+    }
+  </script>
 </Layout>
 

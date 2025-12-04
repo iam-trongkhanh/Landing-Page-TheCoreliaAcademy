@@ -27,17 +27,13 @@ export function VideoShowcase() {
             </p>
             <button
               onClick={() => setOpen(true)}
-              className="flex h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-white text-black shadow-[0px_15px_40px_rgba(0,0,0,0.35)] transition-transform hover:scale-105 active:scale-95 relative z-20"
+              className="relative flex items-center justify-center cursor-pointer"
               aria-label="Play campus video"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
+              <span className="video-play-pulse"></span>
+              <span className="video-play-button">
+                <span className="video-play-icon" />
+              </span>
             </button>
           </div>
         </AnimateFadeIn>
