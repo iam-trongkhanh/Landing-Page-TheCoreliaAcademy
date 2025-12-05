@@ -36,7 +36,7 @@ export function ProgramCard({
         {/* Button */}
         <a
           href={href}
-          className="mt-auto inline-flex items-center gap-2 border border-transparent px-3 py-2 text-sm font-semibold text-[#641320] transition-all duration-300 group-hover:text-white hover:border-white hover:bg-transparent hover:text-white group/readmore"
+          className="mt-auto inline-flex items-center gap-2 border-2 border-transparent px-3 py-2 text-sm font-semibold text-[#641320] transition-all duration-300 group-hover:text-white hover:border-2 hover:border-white hover:bg-transparent hover:text-white group/readmore"
         >
           <span>READ MORE</span>
           <span className="transition-transform duration-300 group-hover/readmore:translate-x-1">

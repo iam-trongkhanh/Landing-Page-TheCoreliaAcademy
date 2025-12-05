@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { PlayButton } from "../ui/PlayButton";
 
 type TestimonialCardProps = {
   image: string;
@@ -43,19 +44,12 @@ export function TestimonialCard({
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
             {showPlayIcon && onPlayClick && (
-              <button
-                onClick={onPlayClick}
-                className="absolute right-3 top-3 sm:right-4 sm:top-4 z-10 flex h-10 w-10 sm:h-12 sm:w-12 cursor-pointer items-center justify-center rounded-full bg-white transition-transform hover:scale-110"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="h-6 w-6 text-[#822333]"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </button>
+              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                <PlayButton
+                  onClick={onPlayClick}
+                  ariaLabel={`Play video for ${name}`}
+                />
+              </div>
             )}
           </>
         )}
@@ -84,4 +78,3 @@ export function TestimonialCard({
     </div>
   );
 }
-

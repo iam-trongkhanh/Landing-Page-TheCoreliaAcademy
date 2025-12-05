@@ -131,7 +131,7 @@ export function SiteHeader() {
         {/* Mobile Menu Button – shown on widths < 1280px */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="xl:hidden flex flex-col gap-1.5 p-2"
+          className="xl:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
           aria-label="Toggle menu"
         >
           <span

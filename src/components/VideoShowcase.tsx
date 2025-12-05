@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AnimateFadeIn } from "./AnimateFadeIn";
+import { PlayButton } from "./ui/PlayButton";
 
 export function VideoShowcase() {
   const [open, setOpen] = useState(false);
@@ -25,16 +26,10 @@ export function VideoShowcase() {
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.4em] sm:tracking-[0.5em] text-white/80">
               Campus overview
             </p>
-            <button
+            <PlayButton
               onClick={() => setOpen(true)}
-              className="relative flex items-center justify-center cursor-pointer"
-              aria-label="Play campus video"
-            >
-              <span className="video-play-pulse"></span>
-              <span className="video-play-button">
-                <span className="video-play-icon" />
-              </span>
-            </button>
+              ariaLabel="Play campus video"
+            />
           </div>
         </AnimateFadeIn>
       </div>
